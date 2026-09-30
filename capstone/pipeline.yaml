@@ -1,0 +1,44 @@
+# Capstone: a 1B cybersecurity analyst SLM under 1 GB that beats a general 7B on its domain eval.
+# Each stage names the lab that implements it, its inputs, outputs, and the gate it must pass.
+project: soc-analyst-1b
+target:
+  domain_eval: ../labs/lab19_evaluation/data/test.jsonl
+  must_beat: Qwen/Qwen2.5-7B-Instruct          # general 7B baseline, same eval contract
+  max_artifact_gb: 1.0
+  max_p95_latency_ms: {laptop_cpu: 1500, phone: 2500}
+
+stages:
+  - name: data
+    lab: lab06_data_curation
+    out: data/domain_mix.jsonl                 # curated security text + general mix, decontaminated
+    gate: {min_tokens: 2.0e8, contamination_hits: 0}
+  - name: cpt
+    lab: lab07_pretrain_150m                   # reuse the trainer on a 1B base with a low LR
+    base: meta-llama/Llama-3.2-1B
+    tokens: 2.0e8
+    gate: {general_benchmark_drop_max: 1.0}    # HellaSwag/ARC points
+  - name: distill_sft
+    lab: lab08_distillation                    # teacher traces for SOC tasks, rejection-sampled
+    teacher: Qwen/Qwen2.5-72B-Instruct
+    then: lab11_sft
+    gate: {ifeval_min: 0.55}
+  - name: preference
+    lab: lab12_preference
+    method: simpo
+    gate: {length_controlled_win_vs_sft_min: 0.55}
+  - name: tools
+    lab: lab15_function_calling
+    gate: {call_accuracy_min: 0.9, irrelevance_accuracy_min: 0.9}
+  - name: quantize
+    lab: lab16_quantization
+    formats: [Q5_K_M, Q4_K_M]
+    gate: {domain_drop_max_points: 1.0, artifact_gb_max: 1.0}
+  - name: deploy
+    labs: [lab17_serving, lab18_on_device]
+    gate: {p95_latency_ms: see target}
+  - name: evaluate
+    lab: lab19_evaluation
+    gate: {beats_baseline_paired_bootstrap_p: 0.95}
+  - name: red_team
+    lab: lab20_red_team_mlops
+    gate: {asr_indirect_injection_max: 0.05, benign_refusal_max: 0.05}

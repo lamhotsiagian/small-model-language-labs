@@ -1,0 +1,20 @@
+Model bahasa kecil dapat berjalan di ponsel, laptop, dan perangkat tepi dengan memori yang terbatas.
+Tokenizer menentukan berapa banyak token yang dibutuhkan sebuah kalimat, dan setiap token memerlukan waktu serta biaya.
+Kosakata yang lebih besar memampatkan teks dengan lebih baik, tetapi tabel embedding ikut membesar.
+Para insinyur mengukur fertilitas, yaitu rata-rata jumlah token per kata, untuk setiap bahasa yang dilayani.
+Jika fertilitas tinggi, jendela konteks cepat penuh dan proses generasi menjadi lebih lambat.
+Tim melatih tokenizer baru menggunakan campuran bahasa Inggris, bahasa Indonesia, dan kode program.
+Mereka membandingkan kosakata berukuran enam belas ribu, tiga puluh dua ribu, dan enam puluh empat ribu.
+Pesan layanan pelanggan sering mencampur bahasa, nama produk, dan nomor pesanan.
+Pelanggan bertanya tentang tagihan, pengiriman, akun, dan masalah teknis pada aplikasi.
+Pembayaran sebesar 610 diterima dari Dewi Lestari pada tanggal 2 Oktober 2024.
+Paket saya sudah dinyatakan terkirim tetapi belum sampai di rumah.
+Bagaimana cara mengubah alamat email pada profil saya?
+Aplikasi selalu berhenti mendadak setiap kali saya membuka kamera.
+Model penerjemah harus memahami imbuhan seperti me-, ber-, di-, ke-an, dan pe-an.
+Kata seperti mempertanggungjawabkan dan ketidakberesan menjadi banyak token jika kosakata tidak mencakup bahasa Indonesia.
+Sistem perutean memutuskan apakah permintaan dijawab di perangkat atau dikirim ke model besar.
+Kuantisasi memperkecil ukuran bobot, sedangkan tokenizer menentukan panjang setiap masukan.
+Evaluasi yang baik harus mencerminkan bahasa dan jenis konten yang benar-benar digunakan pengguna.
+Setiap keputusan desain merupakan kompromi antara kualitas, kecepatan, memori, dan biaya.
+Toko roti itu akan membuka cabang kedua di Bandung pada bulan Juni dan merekrut lima belas karyawan.

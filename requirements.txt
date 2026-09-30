@@ -1,0 +1,43 @@
+# Core (every lab)
+torch>=2.3
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+pandas>=2.1
+tqdm>=4.66
+
+# Hugging Face stack (Labs 1, 3, 6, 8-20)
+transformers>=4.46
+tokenizers>=0.20
+datasets>=3.0
+accelerate>=1.0
+peft>=0.13
+trl>=0.12
+safetensors>=0.4
+
+# Data curation (Lab 6)
+datasketch>=1.6
+scikit-learn>=1.4
+
+# Evaluation (Labs 1, 7, 10, 11, 19)
+lm-eval>=0.4.4
+
+# Quantization and serving (Labs 16-18). Install the ones your hardware supports.
+# bitsandbytes>=0.44        # CUDA only (QLoRA, 8-bit)
+# autoawq>=0.2              # CUDA only
+# gptqmodel>=1.0            # CUDA only
+# vllm>=0.6                 # Linux + CUDA
+# sglang[all]>=0.3          # Linux + CUDA
+# llama-cpp-python>=0.3     # CPU / Metal / CUDA
+# mlx-lm>=0.19              # Apple Silicon only
+
+# Structured output and agents (Lab 15)
+jsonschema>=4.21
+# outlines>=0.1
+# xgrammar>=0.1
+
+# Serving and load testing (Labs 17, 20)
+fastapi>=0.110
+uvicorn>=0.29
+httpx>=0.27
+prometheus-client>=0.20

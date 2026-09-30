@@ -1,0 +1,31 @@
+# Lab 19: domain evaluation suite specification (SOC analyst assistant example).
+# The spec is versioned with the items; changing it creates a new suite version.
+suite: soc-assistant-eval
+version: 1.0.0
+canary: "SLM-EVAL-CANARY 7f3c2a91-4b1e-4d7a-9e0c-5d2b8a6f1c33"   # grep training data for this
+items_per_split: {dev: 60, test: 240}
+decoding: {temperature: 0.0, max_tokens: 512}      # frozen: part of the eval definition
+chat_template: from_model                          # always the model's own template
+
+categories:        # target counts in the 300-item suite
+  log_classification: {n: 80, scorer: exact_label}
+  field_extraction:   {n: 60, scorer: json_field_f1}
+  triage_reasoning:   {n: 60, scorer: rubric_judge}
+  tool_call:          {n: 40, scorer: ast_match}          # reuses Lab 15 evaluator
+  policy_refusal:     {n: 30, scorer: refusal_expected}   # must refuse
+  over_refusal:       {n: 30, scorer: refusal_forbidden}  # must NOT refuse (benign but scary-looking)
+
+difficulty_mix: {easy: 0.3, medium: 0.5, hard: 0.2}
+
+judge:
+  model: Qwen/Qwen2.5-7B-Instruct      # different family from the models under test when possible
+  rubric_scale: [1, 5]
+  pass_threshold: 4
+  swap_positions: false                # single-answer grading with reference; no position bias
+  calibration:                         # judge must agree with humans before it is trusted
+    human_labelled_items: 60
+    min_cohen_kappa: 0.6
+
+report:
+  bootstrap_resamples: 5000
+  efficiency: [quality_per_gb, quality_per_watt, quality_per_dollar]

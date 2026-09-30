@@ -1,0 +1,20 @@
+Small language models run on phones, laptops, and edge devices where memory and bandwidth are limited.
+The tokenizer decides how many tokens a sentence costs, and every token costs latency and money.
+A larger vocabulary compresses text better, but the embedding table grows with every new entry.
+Engineers measure fertility, the average number of tokens per word, for each language they serve.
+When fertility is high, the context window fills faster and generation takes longer.
+The team trained a new tokenizer on a mix of English, Indonesian, and source code.
+They compared vocabularies of sixteen, thirty two, and sixty four thousand entries.
+The model must handle numbers such as 1250, 3.14159, and 2025-03-03 without confusion.
+Digit splitting makes arithmetic easier because each digit becomes its own token.
+Customer support messages often mix languages, product names, and order numbers like A-771.
+Retrieval augmented generation adds documents to the prompt, which increases the token budget.
+A router model decides whether a request stays on the device or goes to a larger model in the cloud.
+Quantization reduces the size of the weights, while the tokenizer controls the length of every input.
+Special tokens mark the start of a conversation, the end of a turn, and the boundaries of tool calls.
+If the chat template is wrong, a fine tuned model produces strange output even when the weights are correct.
+Weather reports, invoices, and short emails are typical inputs for an on device assistant.
+The evaluation set contains questions about billing, shipping, accounts, and technical problems.
+Every design decision is a trade off between quality, speed, memory, and cost.
+The best tokenizer for a product depends on the languages and content that the product actually sees.
+Byte level fallback guarantees that any string can be encoded, even emoji and rare scripts.

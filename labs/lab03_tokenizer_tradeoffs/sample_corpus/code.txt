@@ -1,0 +1,26 @@
+def fertility(tokenizer, texts):
+    words = sum(len(t.split()) for t in texts)
+    tokens = sum(len(tokenizer.encode(t).ids) for t in texts)
+    return tokens / max(words, 1)
+
+class RMSNorm(nn.Module):
+    def __init__(self, dim, eps=1e-5):
+        super().__init__()
+        self.eps = eps
+        self.weight = nn.Parameter(torch.ones(dim))
+
+    def forward(self, x):
+        return x * torch.rsqrt(x.pow(2).mean(-1, keepdim=True) + self.eps) * self.weight
+
+for step in range(1000):
+    loss = model(x, y)
+    loss.backward()
+    optimizer.step()
+    optimizer.zero_grad(set_to_none=True)
+    if step % 100 == 0:
+        print(f"step {step} loss {loss.item():.4f}")
+
+SELECT order_id, status, updated_at FROM orders WHERE customer_id = 42 ORDER BY updated_at DESC;
+{"name": "get_order_status", "arguments": {"order_id": "88213"}}
+if __name__ == "__main__":
+    main()
