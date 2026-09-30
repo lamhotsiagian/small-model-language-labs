@@ -8,8 +8,11 @@ server. Each lab maps one-to-one to a chapter of the ebook and has its own
 `README.md` that describes the flow step by step. The ebook's "Lab" section in
 each chapter follows that README exactly and quotes the scripts here.
 
-- Web: http://aiengineeringinsider.com
-- Newsletter: https://aiengineeringinsider.substack.com/subscribe
+- Book preview: https://drive.google.com/file/d/1qW2fWd4zwwhhbYK4hqcgnixJHMq4SUCo/view
+- Book link: https://shop.beacons.ai/aiengineeringinsider/35896e19-1a63-4df7-8b80-4902f87c87ca
+
+<img width="1241" height="1754" alt="preview-small-model-language-1-14_page-0001" src="https://github.com/user-attachments/assets/28b765c2-1df5-4d38-810f-d27befd171b4" />
+
 
 ## Layout
 
